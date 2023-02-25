@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="../assets/images/favicon.png" />
+  <!--[if IE]><link rel="shortcut icon" href="../../assets/images/favicon.ico"><![endif]-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+  <title>Painel Administrativo do Inscrito</title>
+</head>
+
+<body>
+  <div id="load" class="load" hidden>
+    <div class="spinner-border spinner-border-xl text-success" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <header>
+    <div class="cabecalho container-fluid py-2 text-center bg-light-gradient">
+      <h2 class="pb-2 border-bottom"><a class="text-light text-decoration-none" href="index.html"> <img
+            src="../assets/images/logo-escrita-sa.png" alt="logo" class="logo-qwer"></a></h2>
+
+      <div class="row g-4 row-cols-1 row-cols-lg-3">
+      </div>
+    </div>
+    <div class="b-example-divider text-center">
+      <button id="btnLogout" type="button" class="m-1 btn btn-outline-danger float-end">Log out</button>
+    </div>
+  </header>
+  <div class="container-fluid py-2">
+    <div class="row">
+      <div class="col-lg-2 col-md-1 col-sm-0"></div>
+      <div class="col-lg-8 col-md-10 col-sm-12">
+        <div class="card">
+          <div class="card-header .bg-light.bg-gradient">
+            Seus dados
+          </div>
+          <div class="px-2 py-2">
+            <div class="card mb-3 bg-light bg-gradient">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                    <img id="cardFoto" class="img-fluid img-thumbnail rounded-start fotoCard" alt="Foto do Card">
+                  </div>
+                  <div class="col-lg-8 col-md-8 col-sm-12">
+                    <div class="card-body">
+                      <div class="row">
+                        <h5 class="card-title"><span class="h6"> Nome:</span> <span id="cardNome"></span>
+                        </h5>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-12">
+                          <p class="card-text"><span class="h6"> Documento:</span> <span id="cardDocumento"></span></p>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-12">
+                          <p class="card-text"><span class="h6"> Email:</span> <span id="cardEmail"></span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-12">
+                          <p class="card-text"><span class="h6"> WhatsApp:</span> <span id="cardWhatsApp"></span></p>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-12">
+                          <p class="card-text"><span class="h6">Data de Nascimento:</span>
+                            <span id="cardDataNascimento"></span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-12">
+                          <p class="card-text"><span class="h6"> Pais:</span> <span id="cardPais"></span></p>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-12">
+                          <p class="card-text"><span class="h6"> Cidade:</span> <span id="cardCidade"></span>
+                        </div>
+                      </div>
+                      <div class="d-flex">
+                        <p class="card-text"><span class="h6">Status do Pagamento:</span> <span id="cardStatus"></span>
+                        </p>
+
+                      </div>
+                    </div>
+                    <div class="d-flex">
+                      <div id="downloadCard" class="p-2" hidden>
+                        <a id="linkDownload" download="card.png">
+                          <button type="button" class="btn btn-outline-success" id="btnDownload"><i
+                              class="fa fa-download" aria-hidden="true"></i> Download do Card</button>
+                        </a>
+                        <a role="button" class="btn btn-outline-primary" data-bs-toggle="modal" href="#modalCard">
+                          <i class="fa fa-image" aria-hidden="true"></i> Vizualizar card
+                        </a>
+                        <div class="modal fade " id="modalCard" tabindex="-1" aria-labelledby="exampleModalLabel"
+                          aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered modal-xl text-center modal-dialog-scrollable">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Card</h5>
+                                <button type="button" class="close" id="fecharModal" data-dismiss="modal"
+                                  aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <canvas id="myCanvas" class="mycanvas">Your browser does not support
+                                  Canvas.</canvas>
+                              </div>
+                              <div class="modal-footer justify-content-start">
+                                <label for="updImgUser">Atualizar Foto do Card</label>
+                                <input type="file" class="form-control" name="btnUpdImgUser" id="updImgUser">
+                                <a id="linkDownloadUpd" download="card.png">
+                                  <button type="button" class="btn btn-outline-success" id="btnDownloadUpd"><i
+                                      class="fa fa-download" aria-hidden="true"></i> Download do Card</button>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="editarInsc" class="d-flex flex-row-reverse">
+                      <div class="p-2">
+                        <a id="btnEditInsc" href="cadastro-upd.html" class="btn btn-outline-primary"><i
+                            class="fa fa-edit" aria-hidden="true"></i>
+                          Editar Dados</a>
+                        <p class="text-muted text-center" id="txtDataLimite"></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div id="txtMsgComprovante">
+                    <p id="txtDesconto" class="text-bg-warning text-center"></p>
+                    <p class="text-bg-danger text-center">O pagamento só será confirmado após envio do comprovante.
+                      <br> O prazo de confirmação é de 3 dias úteis
+                    </p>
+                  </div>
+                  <form class="row" id="formComprovante">
+                    <div class="mb-2">
+                      <label for="txtFormaPagamento">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                        Forma de Pagamento:
+                      </label>
+                      <select id="txtFormadePagamento" class="form-select" required name="FormadePagamento"
+                        aria-label="Selecione uma Forma de Pagamento">
+                        <option value="" selected>Selecione uma Opção</option>
+                        <option value="Mercadopago">Pagamento via Cartão de Crédito</option>
+                        <option value="Midinero">Pagamento via Mi dinero</option>
+                        <option value="Banco">Pagamento via Cartão de Crédito</option>
+                        <option value="Pix">Pagamento via Pix</option>
+                        <option value="Bicicletaria">Pagamento na Bicicleteria (Silva, Biciclo,
+                          Mafferbikes ou Italiano)</option>
+                      </select>
+                    </div>
+                    <div class="mb-2">
+                      <label for="txtComprovante">
+                        <i class="fa fa-receipt fa-fw" aria-hidden="true"></i>
+                        Envie o Comprovante:
+                      </label>
+                      <div id="comprovante">
+                        <input type="file" required accept="image/png,image/jpeg" id="txtComprovante"
+                          class="form-control">
+                      </div>
+                    </div>
+                    <div class="row p-2">
+                      <div class="form-group" id="envio">
+                        <button type="reset" class="btn btn-outline-warning">
+                          <i class="fa fa-eraser" aria-hidden="true"></i>
+                          Limpar</button>
+                      </div>
+                  </form>
+                </div>
+                <div class="text-center p-2" id="pagamento"></div>
+                <!-- ------------COMENTAR DAQUI -->
+
+                <!-- <div id="btnPagamentoBr" hidden class="text-center p-1">
+                  <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+                    data-preference-id="379326377-e539835a-6b56-457c-9315-34769d218659" data-source="button">
+                    </script>
+                </div>
+                <div id="btnPagamentoUy" hidden class="text-center p-1">
+                  <script src="https://www.mercadopago.com.uy/integrations/v1/web-payment-checkout.js"
+                    data-preference-id="673979847-66c5c939-5ae9-415d-820c-984222c48a15" data-source="button">
+                    </script>
+                </div> -->
+                <!-- ------------COMENTAR ATÉ AQUI -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-1 col-sm-0">
+    </div>
+    <!-- ---------- -->
+    <div class="modal fade" id="modalPix" data-backdrop="static" data-keyboard="false" tabindex="-1"
+      aria-labelledby="modalPix" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Pagamento com Pix</h5>
+            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body" id="modalBody1">
+            <img id="imgQrPix" src="assets/images/qrcode2.jpg" alt="QRcode" class="img-fluid">
+            <div class="input-group">
+              <input type="text" class="form-control" name="texto" id="codigoQR" readonly />
+              <button title="Copiar" id="copiarQR" type="button" class="btn btn-outline-success "><i class="fa fa-copy"
+                  aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="text-center">
+              Ou, Copie o código
+            </div>
+
+            <div class="text-center mt-3">
+              <p><b>Yellow Sports</b></p>
+              <span><b>Chave Pix</b></span>
+              <p><b>CNPJ: </b>47.789.360/0001-88</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -------------------------- -->
+    <div class="modal fade" id="modalMidinero" data-backdrop="static" data-keyboard="false" tabindex="-1"
+      aria-labelledby="modalMidinero" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Pagamento com Mi dinero</h5>
+            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+          </div>
+          <div class="modal-body text-center" id="modalBody">
+            <p>Pagamento Mi Dinero é via sistema agências RED PAGO Uruguai ou transferência bancária.</p>
+            <p>
+              Mi Dinero
+            </p>
+            <p>
+              Nome: Eduardo Padilla Severo Junior
+            </p>
+            <p>
+              Cédula: 1080427171
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ---------- -->
+  </div>
+  </div>
+  <div class="b-example-divider"></div>
+  <div class="container">
+    <footer class="d-flex flex-wrap align-items-center py-3 my-4 border-top">
+      <div class="col-md-6 d-flex align-items-center">
+        <a href="index.html" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+          <img src="../assets/images/logo_escuro.png" title="Logo" class="bi" height="24">
+        </a>
+        <span class="mb-3 mb-md-0 text-muted">© 2022. Todos os direitos reservados.</span>
+      </div>
+
+      <ul class="nav col-md-6 justify-content-end list-unstyled d-flex">
+        <li class="ms-3"><a class="text-muted" title="Instagram" href="https://www.instagram.com/semana-academica-if/"
+            target="_blank"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+        </li>
+        <li class="ms-3"><a class="text-muted" title="Facebook" href="https://www.facebook.com/semanaAcademicaIf"
+            target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
+        </li>
+      </ul>
+    </footer>
+  </div>
+  <script type="module" src="./assets/js/main.js"></script>
+  <script type="module" src="../assets/js/validaForm.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/4210741bcc.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

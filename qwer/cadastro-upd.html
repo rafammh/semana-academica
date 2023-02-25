@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="../assets/images/favicon.png" />
+    <!--[if IE]><link rel="shortcut icon" href="../assets/images/favicon.ico"><![endif]-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <title>Painel Administrativo do Inscrito</title>
+</head>
+
+<body>
+    <div id="load" class="load" hidden>
+        <div class="progress w-100">
+            <div id="progressBar" class="flex-column progress-bar progress-bar-striped progress-bar-animated"
+                role="progressbar" aria-label="Animated striped example" aria-valuenow="" aria-valuemin="0"
+                aria-valuemax="100">
+            </div>
+
+        </div>
+        <div class="spinner-grow text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-danger" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-warning" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-grow text-info" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <header>
+        <div class="cabecalho-cad container-fluid py-2 text-center">
+            <h2 class="pb-2 border-bottom"><a class="text-light text-decoration-none" href="index.html"> <img
+                        src="../assets/images/logo_branco.png" alt="logo" class="logo-qwer"></a></h2>
+            <div class="row g-4 row-cols-1 row-cols-lg-3">
+            </div>
+        </div>
+        <div class="b-example-divider text-center">
+            <button id="btnLogout" type="button" class="m-1 btn btn-outline-danger float-end">Log out</button>
+        </div>
+    </header>
+    <div class="container-fluid py-2">
+        <div class="row">
+            <div class="col-lg-2 col-md-1 col-sm-0"></div>
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="p-2 text-center">
+                    <div class="form-group">
+                        <a href="javascript:history.go(-1)" class="btn btn-outline-dark">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header bg-secondary text-light">
+                        Editar eus dados
+                    </div>
+                    <div class="px-2">
+                        <form id="formUpdate">
+
+                            <div class="mb-2 mt-3">
+                                <label for="txtPais" class="form-label">
+                                    <i class=" fa fa-globe fa-fw" aria-hidden="true"></i>
+                                    *País:</label>
+                                <select id="txtPais" class="form-select" disabled readonly="" name="pais"
+                                    aria-label="Selecione um País">
+                                    <option value="" selected>Selecione um País</option>
+                                    <option value="Brasil">Brasil</option>
+                                    <option value="Uruguai">Uruguai</option>
+                                    <option value="Argentina">Argentina</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <label for="txtCidade" class="form-label">
+                                    <i class=" fa fa-city fa-fw" aria-hidden="true"></i>
+                                    *Cidade:</label>
+                                <input type="text" id="txtCidade" class="form-control" name="cidade"
+                                    placeholder="Digite sua Cidade" required="" readonly="" disabled=""
+                                    name="txtCidade">
+                                <span class="error" aria-live="polite"></span>
+                            </div>
+                            <div class="mb-2">
+                                <label for="txtDocumento" class="form-label">
+                                    <i class=" fa fa-id-card fa-fw" aria-hidden="true"></i>
+                                    *Documento de Identidade:</label>
+                                <input type="text" class="form-control" required="" readonly="" disabled=""
+                                    id="txtDocumento" name="documento" pattern="[0-9]+$"
+                                    placeholder="Digite seu Documento">
+                                <span class="error" aria-live="polite"></span>
+                            </div>
+                            <div class="mb-2">
+                                <label for="txtDataNascimento" class="form-label">
+                                    <i class=" fa fa-calendar-days fa-fw" aria-hidden="true"></i>
+                                    *Data de nascimento:</label>
+                                <input type="date" id="txtDataNascimento" class="form-control" name="dataNascimento"
+                                    required="" readonly="" disabled="">
+                                <span class="error" aria-live="polite"></span>
+                            </div>
+                            <div class="mb-2">
+                                <label for="txtEmail" class="form-label">
+                                    <i class=" fa fa-at fa-fw" aria-hidden="true"></i>
+                                    *E-mail:</label>
+                                <input type="email" id="txtEmail" class="form-control" required="" readonly=""
+                                    disabled="" name="email" placeholder="Digite seu E-mail"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                <span class="error" aria-live="polite"></span>
+                            </div>
+                            <div class="mb-2">
+                                <label for="txtWhatsApp" class="form-label">
+                                    <i class=" fa fa-whatsapp fa-fw" aria-hidden="true"></i>
+                                    *WhatsApp:</label>
+                                <input type="tel" id="txtWhatsApp" class="form-control" required="" readonly=""
+                                    disabled="" maxlength="15" name="txtWhatsApp" pattern="[0-9]+$"
+                                    placeholder="Digite seu WhatsApp" />
+                                <span class="error" aria-live="polite"></span>
+                            </div>
+                            <div class="mb-2 mt-3">
+                                <label for="txtCategoria" class="form-label">
+                                    <i class="fa-solid fa-venus-mars"></i>
+                                    *Sexo:</label>
+                                <select disabled readonly="" id="txtCategoria" class="form-select" name="Categoria"
+                                    aria-label="Selecione uma opção">
+                                    <option value="" selected>Selecione uma Opção</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Feminino">Feminino</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <label for="txtNome" class="form-label">
+                                    <i class=" fa fa-user fa-fw" aria-hidden="true"></i>
+                                    *Nome Completo:</label>
+                                <input type="text" id="txtNome" class="form-control" required name="nome"
+                                    placeholder="Digite seu Nome">
+                                <span class="error" aria-live="polite"></span>
+                            </div>
+
+
+                            <div class="mb-2 text-center">
+                                <label>
+                                    <input type="checkbox" id="checkboxFoto" name="meucheckbox"> Deseja mudar
+                                    a Foto?
+                                    <p class="text-danger">
+                                        (Desmarque esta opção caso não queira alterar a foto. <br>
+                                        Caso Atualize a inscrição sem foto e com esta opção marcada
+                                        a sua foto será apagada)
+                                    </p>
+                                </label>
+                            </div>
+                            <div class="mb-2 text-center">
+                                <label><i class="fa fa-picture-o" aria-hidden="true"></i> Foto Atual:</label>
+                            </div>
+                            <div class="mb-3 text-center">
+                                <img id="imgThumbnail" class="img-thumbnail" width="150" alt="Foto atual">
+                            </div>
+                            <div hidden class="mb-2" id="divFoto">
+                                <label for="txtFotoCard">
+                                    <i class="fa fa-picture-o fa-fw" aria-hidden="true"></i>
+                                    Foto para o Card:
+                                </label>
+                                <div class="input-group mb-3">
+                                    <input type="file" accept="image/png,image/jpeg" id="txtFotoCard"
+                                        class="form-control" name="txtFotoCard">
+                                </div>
+                            </div>
+                            <div class="mb-2 text-center">
+                                <label>
+                                    <input type="checkbox" id="checkboxSenha" name="meucheckbox"> Deseja
+                                    atualizar a Senha?
+                                    <p class="text-muted">
+                                        Desmarque esta opção caso não queira alterar a Senha.
+                                    </p>
+                                </label>
+                            </div>
+                            <div class="mb-2" id="Senha" style="display: none;">
+                                <div class="mb-2">
+                                    <label for="txtSenha" class="form-label">
+                                        <i class="fa fa-shield" aria-hidden="true"></i>
+                                        *Senha:</label>
+                                    <input type="password" id="txtSenha" class="form-control" name="Senha"
+                                        placeholder="Digite uma Senha">
+                                    <span class="error" aria-live="polite"></span>
+                                </div>
+                                <div class="mb-2 position-relative">
+                                    <label for=" confirm_password" class="form-label">
+                                        <i class="fa fa-check-double" aria-hidden="true"></i>
+                                        *Confirme a Senha:</label>
+                                    <input class="form-control" type="password" placeholder="Confirme Senha"
+                                        id="txtConfirmaSenha" minlength="6">
+                                </div>
+                            </div>
+                            <label>
+                                Os campos com * são obrigatórios
+                            </label>
+                            <div class="form-group text-center">
+                                <button type="submit" id="btnCadastrar" class="btn btn-info">
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                    Atualizar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-1 col-sm-0">
+
+            </div>
+        </div>
+    </div>
+    <div class="b-example-divider"></div>
+    <div class="container">
+        <footer class="d-flex flex-wrap align-items-center py-3 my-4 border-top">
+            <div class="col-md-6 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <img src="../assets/images/logo_escuro.png" class="bi" width="30" height="24">
+                </a>
+
+                <span class="mb-3 mb-md-0 text-muted">© 2022. Todos os direitos reservados.</span>
+            </div>
+
+            <ul class="nav col-md-6 justify-content-end list-unstyled d-flex">
+                <li class="ms-3"><a class="text-muted" href="https://www.instagram.com/semana-academica-if/"
+                        target="_blank"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+                </li>
+                <li class="ms-3"><a class="text-muted" href="https://www.facebook.com/semanaAcademicaIf"
+                        target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+    <script type="module" src="./assets/js/participante.js"></script>
+    <script type="module" src="../assets/js/validaForm.js"></script>
+    <script src="https://kit.fontawesome.com/4210741bcc.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+.load {
+  background: #fff;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cabecalho {
+  background: #f7f7f7;
+  color: #fff;
+}
+.cabecalho-cad {
+  background: #17882c;
+  color: #fff;
+}
+#formComprovante {
+  justify-content: center;
+}
+#pagamento {
+  display: flex;
+  justify-content: center;
+}
+.logo-qwer {
+  width: 30%;
+}
+.fotoCard {
+  max-width: 150px;
+}
+.b-example-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid rgba(0, 0, 0, 0.15);
+  border-width: 1px 0;
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+}
+.bi {
+  vertical-align: -0.125em;
+  fill: currentColor;
+}

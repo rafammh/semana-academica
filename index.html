@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="shortcut icon" href="assets/images/logo_escuro.png" type="image/x-icon">
+  <!--[if IE]><link rel="shortcut icon" href="../images/favicon.ico"><![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <title>Semana Academica Ifsul</title>
+</head>
+
+<body>
+  <div id="load" class="load" hidden>
+    <div class="progress w-100">
+      <div id="progressBar" class="flex-column progress-bar progress-bar-striped progress-bar-animated"
+        role="progressbar" aria-label="Animated striped example" aria-valuenow="" aria-valuemin="0" aria-valuemax="100">
+      </div>
+
+    </div>
+    <div class="spinner-grow text-success" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-danger" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-warning" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-grow text-info" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <header class="header-wrapper">
+    <div class="infos container-fluid d-none d-md-flex">
+      <div class="row">
+        <div class="col-lg-6 col-md-6">
+          <img src="assets/images/logo-escrita.png" class="img-fluid logo-escrita" alt="">
+        </div>
+        <div class="col-lg-6 col-md-6">
+          <img src="assets/images/novos-desafios.png" class="img-fluid novos-desafios" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid d-xs-flex d-sm-flex d-md-none flex-column text-center">
+      <div class="header-logo">
+        <img src="assets/images/novos-desafios.png" class="img-fluid novos-desafios" alt="">
+      </div>
+      <div class="mb-5">
+        <img src="assets/images/logo-escrita.png" class="img-fluid logo-escrita" alt="">
+      </div>
+    </div>
+    <div class="social-media">
+      <a role="button" id="btnInscricao" class="position-relative text-decoration-none" data-bs-toggle="modal"
+        href="#cadastroModal">
+        <div class="link_button">
+          Inscreva-se
+        </div>
+      </a>
+      <a role="button" class="position-relative text-decoration-none" data-bs-toggle="modal" href="#loginModal">
+        <div class="link_button">
+          Login
+        </div>
+      </a>
+    </div>
+  </header>
+  <!-- Modal Cadastro -->
+  <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header">
+          <img src="assets/images/icone_branco.png" class="img-fluid icone_logo" alt="">
+          <h5 class="modal-title" id="cadastroModalLabel">Formulário de Inscrição</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+
+            <div class="col-lg-2 col-md-1 col-sm-0"></div>
+            <div class="col-lg-8 col-md-10 col-sm-12">
+
+              <!-- Começa o Formulário -->
+              <form id="formCadastro" class="needs-validation" method="post">
+                <div class="mb-2 mt-3">
+                  <label for="txtPais" class="form-label">
+                    <i class=" fa fa-globe fa-fw" aria-hidden="true"></i>
+                    *País:</label>
+                  <select id="txtPais" class="form-select" required name="pais" aria-label="Selecione um País">
+                    <option translate="no" value="" selected>Selecione um País</option>
+                    <option translate="no" value="Brasil">Brasil</option>
+                    <option translate="no" value="Uruguai">Uruguai</option>
+                    <option translate="no" value="Argentina">Argentina</option>
+                  </select>
+                </div>
+                <div class="mb-2">
+                  <label for="txtNome" class="form-label">
+                    <i class=" fa fa-user fa-fw" aria-hidden="true"></i>
+                    *Nome Completo:</label>
+                  <input type="text" id="txtNome" class="form-control" required name="nome"
+                    placeholder="Digite seu Nome">
+                </div>
+                <div class="mb-2">
+                  <label for="txtDocumento" class="form-label">
+                    <i class=" fa fa-id-card fa-fw" aria-hidden="true"></i>
+                    *Documento de Identidade:</label>
+                  <input type="text" class="form-control" required id="txtDocumento" name="documento" minlength="7"
+                    pattern="[a-zA-Z0-9]+$" placeholder="Digite seu Documento">
+                </div>
+                <div class="mb-2">
+                  <label for="txtDataNascimento" class="form-label">
+                    <i class=" fa fa-calendar-days fa-fw" aria-hidden="true"></i>
+                    *Data de nascimento:</label>
+                  <input type="date" id="txtDataNascimento" class="form-control" name="dataNascimento" required>
+                </div>
+                <div class="mb-2">
+                  <label for="txtEmail" class="form-label">
+                    <i class=" fa fa-at fa-fw" aria-hidden="true"></i>
+                    *E-mail:</label>
+                  <input type="email" id="txtEmail" class="form-control" required name="email"
+                    placeholder="Digite seu E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                </div>
+                <div class="mb-2">
+                  <label for="txtCidade" class="form-label">
+                    <i class=" fa fa-city fa-fw" aria-hidden="true"></i>
+                    *Cidade:</label>
+                  <input type="text" id="txtCidade" class="form-control" name="cidade" placeholder="Digite sua Cidade"
+                    name="txtCidade" required="">
+                </div>
+                <div class="mb-2">
+                  <label for="txtWhatsApp" class="form-label">
+                    <i class=" fa fa-whatsapp fa-fw" aria-hidden="true"></i>
+
+                    *WhatsApp:</label>
+                  <div class="input-group">
+                    <select required="required" id="dddWhatsApp" class="input-group-text"
+                      aria-label="Selecione seu DDI">
+                      <option translate="no" value="">DDI</option>
+                      <option translate="no" value="+55">BR +55</option>
+                      <option translate="no" value="+598">UY +598</option>
+                      <option translate="no" value="+54">AR +54</option>
+                    </select>
+                    <input type="tel" id="txtWhatsApp" class="form-control" required="required" maxlength="13"
+                      name="txtWhatsApp" pattern="[0-9/ /]+$" placeholder="Digite Seu WhatsApp" />
+                  </div>
+                </div>
+                <div class="mb-2">
+                  <label for="txtFotoCard">
+                    <i class="fa fa-picture-o fa-fw" aria-hidden="true"></i>
+                    Foto para o Card (Opcional):
+                  </label>
+                  <p>(Anexo de sua foto favorita para receber seu card promocional do Experience
+                    2022)</p>
+                  <div class="input-group mb-3">
+                    <input type="file" accept="image/png,image/jpeg" id="txtFotoCard" class="form-control"
+                      name="txtFotoCard">
+                  </div>
+                  <div class="mb-2">
+                    <label for="txtSenha" class="form-label">
+                      <i class="fa fa-shield" aria-hidden="true"></i>
+                      *Senha:</label>
+                    <input type="password" id="txtSenha" class="form-control" name="Senha"
+                      placeholder="Digite uma Senha" minlength="6" required="">
+                  </div>
+                  <div class="mb-2 position-relative">
+                    <label for=" confirm_password" class="form-label">
+                      <i class="fa fa-check-double" aria-hidden="true"></i>
+                      *Confirme a Senha:</label>
+                    <input class="form-control" type="password" placeholder="Confirme Senha" id="txtConfirmaSenha"
+                      minlength="6" required="">
+                  </div>
+                </div>
+                <div class="mb">
+                  <label>
+                    <input type="checkbox" id="checkboxTermos" name="meucheckbox" required> *Li e Aceito os Termos <a
+                      href="https://docs.google.com/document/d/1XN1XYYFJIPq3iqLKXpkLwb-HZre_mlbd/edit?usp=sharing&ouid=109084348936773561627&rtpof=true&sd=true"
+                      target="_blank">Termos</a>
+                  </label>
+                </div>
+                <label>
+                  Os campos com * são obrigatórios
+                </label>
+                <div class="form-group">
+                  <button type="submit" id="btnCadastrar" class="btn btn-success float-end" disabled>
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    Inscrever</button>
+                  <button type="reset" class="btn btn-warning float-end">
+                    <i class="fa fa-eraser" aria-hidden="true"></i>
+                    Limpar</button>
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-2 col-md-1 col-sm-0"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal Cadastro -->
+  <!-- Modal Login -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Faça Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formLogin">
+            <div class="mb-3 mt-3">
+              <label for="loginPais" class="form-label">
+                <i class=" fa fa-globe fa-fw" aria-hidden="true"></i>
+                País:</label>
+              <select id="loginPais" class="form-select" required name="pais" aria-label="Selecione um País">
+                <option translate="no" value="">Selecione Um Pais</option>
+                <option translate="no" value="Brasil">Brasil</option>
+                <option translate="no" value="Uruguai">Uruguai</option>
+                <option translate="no" value="Argentina">Argentina</option>
+              </select>
+            </div>
+            <div class="mb-3 mt-3">
+              <label for="loginDocumento" class="form-label">Documento:</label>
+              <input id="loginDocumento" type="text" class="form-control" placeholder="Digite seu Documento"
+                name="loginDocumento">
+            </div>
+            <div class="mb-3">
+              <label for="pwd" class="form-label">Senha:</label>
+              <input type="password" class="form-control" id="loginPassword" placeholder="Digite sua Senha" name="pswd">
+            </div>
+            <div class="form-check mb-3">
+              <!-- <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" name="remember"> Lembre-me
+              </label> -->
+            </div>
+            <button id="btnLogin" type="submit" class="btn btn-primary float-end">Login</button>
+          </form>
+          <div id="statusLogin" class="authlabel"></div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal Login -->
+  <div class="alert alert-bordo py-2 text-center">
+    <h2 class="text-light">Informações</h2>
+    <p><b>Local:</b> Santana do Livramento</p>
+    <p><b>Datas:</b> 09, 10 e 11 de Dezembro de 2022</p>
+    <a class="btn btn-outline-light"
+      href="https://drive.google.com/file/d/1qf5huWycGeP-ilEyvfmyZ42xe0Vmt5UY/view?usp=sharing" target="_blank"
+      rel="noopener noreferrer">Saiba Mais</a>
+    <p class="text-bg-warning m-2" id="lote"></p>
+  </div>
+  <div class="container py-2">
+    <h2 class="text-dark">Sobre</h2>
+
+    <!-- ----------------PALSTRAS--------------------- -->
+    <div class="card-container bg-exp m-2">
+      <div class="card-text px-1">
+        <p class="px-lg-3 px-md-2 px-sm-2">
+          <b> PALESTRAS:</b> essa é uma das mais tradicionais formas de informação
+          e interação entre alunos, professores e profissionais, que discutem
+          sobre um assunto específico. É ainda melhor se há a oportunidade de
+          que perguntas sejam elaboradas ao fim deste momento e conversas produtivas
+          sejam proporcionadas.
+        </p>
+        <div class="container">
+          <div class="row d-md-flex justify-content-center">
+            <div class="col-lg-4 col-md-6 col-sm-12 d-flex img-card-text">
+              <img class="img-fluid w-50 invert-color" src="assets/images/icones/icone-experience.png" alt="Mochila">
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12">
+              <ul class="list-unstyled">
+                <li class="none negrito"> 09.12 Fresamento de Aços Inoxidáveis Duplex </li>
+                <li>Professor Carlos Slva | 19h às 23h</li>
+              </ul>
+              <ul class="list-unstyled">
+                <li class="none negrito">10.12 Conhecendo o Metaverso </li>
+                <li>Professor João da Silva | 13h às 19h</li>
+              </ul>
+              <ul class="list-unstyled">
+                <li class="none negrito">11.12 A inovação na arte de programar </li>
+                <li>Professora Maria da Silva | 7h às 14h</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card card-exp">
+        <div class="card-wrapper">
+          <h2>PALESTRAS</h2>
+          <p><--- saiba mais</p>
+        </div>
+      </div>
+    </div>
+    <!-- --------------------FIM PALESTRA-------------------------------- -->
+
+
+    <!-- --------------------OFICINA-------------------------------- -->
+    <div class="card-container bg-chl m-2">
+      <div class="card card-chl">
+        <div class="card-wrapper">
+          <h2>Oficinas</h2>
+          <p>saiba mais ---></p>
+        </div>
+      </div>
+      <div class="card-text px-1">
+        <p class="p-1">
+          <b> OFICINAS:</b> os alunos terão a chance de produzir algum material
+          e pôr em prática o que já aprenderam ao longo dos estudos na universidade
+          e da semana acadêmica. Para os novatos, é a oportunidade de já ter uma prévia
+          do que os aguarda em semestres futuros. Geralmente, os veteranos ministram
+          estes minicursos para os presentes.
+        </p>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12 d-flex img-card-text">
+              <img class="img-fluid w-50 invert-color" src="assets/images/icones/icone-challenge.png" alt="Desafio">
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12">
+              <ul class="list-unstyled">
+                <li class="none negrito"> 09.12 Aplicações comerciais em Python </li>
+                <li>Professor Carlos Slva | 19h às 23h</li>
+              </ul>
+              <ul class="list-unstyled">
+                <li class="none negrito">10.12 Planejamento de Carreiras e inserção profissional </li>
+                <li>Professor João da Silva | 13h às 19h</li>
+              </ul>
+              <ul class="list-unstyled">
+                <li class="none negrito">11.12 Projeto para 3D usando SolidWorks e Software para Windows 10 </li>
+                <li>Professora Maria da Silva | 7h às 14h</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- --------------------FIM OFICINA-------------------------------- -->
+
+    <!-- --------------------PAINEIS-------------------------------- -->
+    <div class="card-container bg-rcg m-2">
+      <div class="card-text px-1">
+        <p class="px-lg-3 px-md-2 px-sm-2">
+          <b>PAINÉIS:</b> depois das oficinas, é hora de
+          compartilhar os resultados com os demais presentes. Para isso servem
+          os painéis. E já que um dos principais motivos do evento é a interação
+          entre os estudantes, este espaço pode ser aberto para que outros trabalhos
+          sejam apresentados, não apenas os que foram desenvolvidos durante a semana
+          acadêmica.
+        </p>
+        <div class="container">
+          <div class="row">
+            <div class="row-cols-auto  d-flex img-card-text">
+              <img class="img-fluid w-50 invert-color" src="assets/images/icones/icone-racing.png" alt="Competição">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card card-rcg">
+        <div class="card-wrapper">
+
+          <h2>PAINÉIS</h2>
+          <p><--- saiba mais</p>
+        </div>
+      </div>
+    </div>
+    <!-- --------------------FIM PAINEIS-------------------------------- -->
+
+
+    <!-- --------------------MINICURSOS-------------------------------- -->
+    <div class="card-container bg-sa m-2">
+      <div class="card card-sa">
+        <div class="card-wrapper">
+          <h2>MINICURSOS</h2>
+          <p>saiba mais ---></p>
+        </div>
+      </div>
+      <div class="card-text px-1">
+        <p class="p-1">
+          <b>MINICURSOS:</b> são eventos de curta duração que busca apresentar e iniciar uma
+          discussão sobre um assunto específico. Levando os alunos a aprenderem
+          mais sobre uma área de interesse e tendo assim uma visão geral do assunto
+          abordado.
+        </p>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12 d-flex img-card-text">
+              <img class="img-fluid w-50 invert-color" src="assets/images/icones/icone-mtb.png" alt="Moutain Bike">
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12">
+              <ul class="list-unstyled">
+                <li class="none negrito"> 09.12 Construção de um Jogo </li>
+                <li>Professor Carlos Slva | 19h às 23h</li>
+              </ul>
+              <ul class="list-unstyled">
+                <li class="none negrito">10.12 Programando em Phyton </li>
+                <li>Professor João da Silva | 13h às 19h</li>
+              </ul>
+              <ul class="list-unstyled">
+                <li class="none negrito">11.12 Introdução ao Arduino </li>
+                <li>Professora Maria da Silva | 7h às 14h</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- --------------------MINICURSOS-------------------------------- -->
+  </div>
+  <footer class="footer">
+    <div class="inner">
+      <div class="text-center center-block">
+        <a href="https://www.facebook.com/semanaAcademica" target="_blank" title="Facebook"><i
+            class=" fa fa-facebook-official fa-3x social social-fb"></i></a>
+        <a href="https://www.instagram.com/experience.sa/" target="_blank" title="Instagram"><i
+            class="fa fa-instagram fa-3x social social-in"></i></a>
+        <a data-bs-toggle="modal" data-bs-target="#cadastroModal" title="Inscreva-se"><i
+            class="fa fa-user-plus fa-3x social social-gh"></i></a>
+        <a data-bs-toggle="modal" data-bs-target="#loginModal" title="Login"><i
+            class=" fa fa-sign-in fa-3x social social-em"></i>
+        </a>
+      </div>
+      <div class="copyright text-center">
+        Copyright © 2022. Todos os direitos reservados.
+        <!-- <a href="https://www.linkedin.com/in/gustavo-m-mello/" target="_blank">
+          Gustavo M. Mello
+        </a> -->
+      </div>
+      <a href="https://api.whatsapp.com/send?phone=5555984220858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20Site"
+        title="WhatsApp" target="_blank" class="wpp-fixo">
+        <i class="fa fa-whatsapp fa-4x i-wpp-fixo"></i><br>
+      </a>
+    </div>
+    </div>
+  </footer>
+  <script type="module" src="assets/js/main.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- <script src="https://kit.fontawesome.com/4210741bcc.js" crossorigin="anonymous"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

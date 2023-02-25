@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Painel Administrativo IFsul</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <script>
+            fetch('./contents/sidebar.html')
+                .then(response => response.text())
+                .then(html => {
+                    const sidebar = document.createElement('ul');
+                    sidebar.id = "accordionSidebar"
+                    sidebar.classList.add('navbar-nav', 'sidebar', 'sidebar-dark', 'accordion', 'bg-gradient-success')
+                    sidebar.innerHTML = html;
+                    wrapper = document.getElementById('wrapper')
+                    wrapper.insertBefore(sidebar, wrapper.firstChild);
+                });
+
+        </script>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <script>
+                    fetch('./contents/topbar.html')
+                        .then(response => response.text())
+                        .then(html => {
+                            const topbar = document.createElement('topbar');
+                            topbar.innerHTML = html;
+                            wrapper = document.getElementById('content')
+                            wrapper.insertBefore(topbar, wrapper.firstChild);
+                        });
+
+                </script>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Painel Administrativo</h1>
+                    <p class="mb-4">Realize a inscrição de uma pessoa na Semana Academica</p>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-success">Inscrever na Semana Academica </h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <!-- Começa o Formulário -->
+                                <form id="formCadastro" class="needs-validation" method="post">
+                                    <div class="mb-2 mt-3">
+                                        <label for="txtPais" class="form-label">
+                                            <i class=" fa fa-globe fa-fw" aria-hidden="true"></i>
+                                            *País:</label>
+                                        <select id="txtPais" class="form-select" required name="pais"
+                                            aria-label="Selecione um País">
+                                            <option translate="no" value="" selected>Selecione um País</option>
+                                            <option translate="no" value="Brasil">Brasil</option>
+                                            <option translate="no" value="Uruguai">Uruguai</option>
+                                            <option translate="no" value="Argentina">Argentina</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="txtNome" class="form-label">
+                                            <i class=" fa fa-user fa-fw" aria-hidden="true"></i>
+                                            *Nome Completo:</label>
+                                        <input type="text" id="txtNome" class="form-control" required name="nome"
+                                            placeholder="Digite seu Nome">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="txtDocumento" class="form-label">
+                                            <i class=" fa fa-id-card fa-fw" aria-hidden="true"></i>
+                                            *Documento de Identidade:</label>
+                                        <input type="text" class="form-control" required id="txtDocumento"
+                                            name="documento" minlength="7" pattern="[a-zA-Z0-9]+$"
+                                            placeholder="Digite seu Documento">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="txtDataNascimento" class="form-label">
+                                            <i class=" fa fa-calendar-days fa-fw" aria-hidden="true"></i>
+                                            *Data de nascimento:</label>
+                                        <input type="date" id="txtDataNascimento" class="form-control"
+                                            name="dataNascimento" required>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="txtEmail" class="form-label">
+                                            <i class=" fa fa-at fa-fw" aria-hidden="true"></i>
+                                            *E-mail:</label>
+                                        <input type="email" id="txtEmail" class="form-control" required name="email"
+                                            placeholder="Digite seu E-mail"
+                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="txtCidade" class="form-label">
+                                            <i class=" fa fa-city fa-fw" aria-hidden="true"></i>
+                                            *Cidade:</label>
+                                        <input type="text" id="txtCidade" class="form-control" name="cidade"
+                                            placeholder="Digite sua Cidade" name="txtCidade" required="">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="txtWhatsApp" class="form-label">
+                                            <i class=" fa fa-whatsapp fa-fw" aria-hidden="true"></i>
+
+                                            *WhatsApp:</label>
+                                        <div class="input-group">
+                                            <select required="required" id="dddWhatsApp" class="input-group-text"
+                                                aria-label="Selecione seu DDI">
+                                                <option translate="no" value="">DDI</option>
+                                                <option translate="no" value="+55">BR +55</option>
+                                                <option translate="no" value="+598">UY +598</option>
+                                                <option translate="no" value="+54">AR +54</option>
+                                            </select>
+                                            <input type="tel" id="txtWhatsApp" class="form-control" required="required"
+                                                maxlength="13" name="txtWhatsApp" pattern="[0-9/ /]+$"
+                                                placeholder="Digite Seu WhatsApp" />
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="txtFotoCard">
+                                            <i class="fa fa-picture-o fa-fw" aria-hidden="true"></i>
+                                            Foto para o Card (Opcional):
+                                        </label>
+                                        <p>(Anexo de sua foto favorita para receber seu card promocional do Experience
+                                            2022)</p>
+                                        <div class="input-group mb-3">
+                                            <input type="file" accept="image/png,image/jpeg" id="txtFotoCard"
+                                                class="form-control" name="txtFotoCard">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="txtSenha" class="form-label">
+                                                <i class="fa fa-shield" aria-hidden="true"></i>
+                                                *Senha:</label>
+                                            <input type="password" id="txtSenha" class="form-control" name="Senha"
+                                                placeholder="Digite uma Senha" minlength="6" required="">
+                                        </div>
+                                        <div class="mb-2 position-relative">
+                                            <label for=" confirm_password" class="form-label">
+                                                <i class="fa fa-check-double" aria-hidden="true"></i>
+                                                *Confirme a Senha:</label>
+                                            <input class="form-control" type="password" placeholder="Confirme Senha"
+                                                id="txtConfirmaSenha" minlength="6" required="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" id="btnCadastrar" class="btn btn-success float-end"
+                                            disabled>
+                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                            Inscrever</button>
+                                        <button type="reset" class="btn btn-warning float-end">
+                                            <i class="fa fa-eraser" aria-hidden="true"></i>
+                                            Limpar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <script>
+                fetch('./contents/footer.html')
+                    .then(response => response.text())
+                    .then(html => {
+                        const footer = document.createElement('footer');
+                        footer.classList.add('sticky-footer', 'bg-white')
+                        footer.innerHTML = html;
+                        wrapper = document.getElementById('content-wrapper')
+                        wrapper.insertBefore(footer, wrapper.lastChild);
+                    });
+
+            </script>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <script type="module" src="assets/main.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+
+</body>
+
+</html>
