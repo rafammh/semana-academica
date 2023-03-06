@@ -4,8 +4,8 @@ import { updateParticipante } from "../../qwer/assets/js/participante-upd.js";
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 
-const pais = id.substring(0, id.length - 10);
-const doc = id.substring(id.length - 10);
+const pais = sessionStorage.getItem('paislogado').replace(/"/g, "")
+const doc = sessionStorage.getItem('documentoLogado').replace(/"/g, "")
 
 console.log(doc);
 console.log(pais);
