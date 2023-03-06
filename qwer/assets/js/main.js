@@ -123,23 +123,23 @@ docs.forEach(item => {
                 })
 
                 // -----------------------
-                let cardMTB = {
-                    fotoParticipante: foto,
-                    fotoModalidade: fotoModalidade,
-                    Categoria: {
-                        nomeCategoria: nomeCategoria,
-                        corCategoria: corCategoria,
-                        eixoX: x,
-                        eixoY: y,
-                    },
-                    nomeParticipante: nome,
-                    pais: pais,
-                    cidade: cidade,
-                    equipe: equipe,
-                    equipe2: equipe2,
-                }
-                divDownloadCard.hidden = false
-                CanvasCard(cardMTB)
+                // let cardMTB = {
+                //     fotoParticipante: foto,
+                //     fotoModalidade: fotoModalidade,
+                //     Categoria: {
+                //         nomeCategoria: nomeCategoria,
+                //         corCategoria: corCategoria,
+                //         eixoX: x,
+                //         eixoY: y,
+                //     },
+                //     nomeParticipante: nome,
+                //     pais: pais,
+                //     cidade: cidade,
+                //     equipe: equipe,
+                //     equipe2: equipe2,
+                // }
+                // divDownloadCard.hidden = false
+                // CanvasCard(cardMTB)
                 // -----------------------
             })
         }
