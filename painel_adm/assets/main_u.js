@@ -8,7 +8,6 @@ if (!sessionStorage.getItem('token')) {
     alert('Você precisa estar logado para acessar esta página');
     window.location.href = '../index.html';
 }
-console.log('aaaa')
 // Show loading
 loading.hidden = false;
 
