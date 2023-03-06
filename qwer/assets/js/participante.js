@@ -40,7 +40,7 @@ else {
     let pais = sessionStorage.getItem('paislogado').replace(/\"|\"|\-/g, '');
 
     const id = pais + doc;
-    const nivel = 'adm'
+    const nivel = 'user'
     updateParticipante(id, nivel)
 }
 
