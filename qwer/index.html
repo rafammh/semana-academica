@@ -84,7 +84,7 @@
 
                       </div>
                     </div>
-                    <div class="d-flex">
+                    <div class="d-flex cards-check">
                       <div id="downloadCard" class="p-2" hidden>
                         <a id="linkDownload" download="card.png">
                           <button type="button" class="btn btn-outline-success" id="btnDownload"><i
@@ -109,9 +109,7 @@
                                   Canvas.</canvas>
                               </div>
                               <div class="modal-footer justify-content-start">
-                                <label for="updImgUser">Atualizar Foto do Card</label>
-                                <input type="file" class="form-control" name="btnUpdImgUser" id="updImgUser">
-                                <a id="linkDownloadUpd" download="card.png">
+                                <a id="linkDownloadUpd" download="certificado.png">
                                   <button type="button" class="btn btn-outline-success" id="btnDownloadUpd"><i
                                       class="fa fa-download" aria-hidden="true"></i> Download do Card</button>
                                 </a>
@@ -120,8 +118,19 @@
                           </div>
                         </div>
                       </div>
+                      <div class="card">
+                        <div class="card-header">
+                          Checkpoints da Semana Acadêmica
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                            <input type="checkbox" id="diaCheckbox" name="diaCheckbox" value="+1">
+                            <label id="txtDiaCheckpoint" for="txtDiaCheckpoint"></label>
+                          </li>
+
+                      </div>
                     </div>
-                    <div id="editarInsc" class="d-flex flex-row-reverse">
+                    <div id="editarInsc" class="d-flex justify-content-center">
                       <div class="p-2">
                         <a id="btnEditInsc" href="cadastro-upd.html" class="btn btn-outline-primary"><i
                             class="fa fa-edit" aria-hidden="true"></i>
@@ -134,59 +143,11 @@
                 <div class="row">
                   <div id="txtMsgComprovante">
                     <p id="txtDesconto" class="text-bg-warning text-center"></p>
-                    <p class="text-bg-danger text-center">O pagamento só será confirmado após envio do comprovante.
-                      <br> O prazo de confirmação é de 3 dias úteis
+                    <p class="text-bg-danger text-center">O seu certificado será gerado após a conclusão da Semana
+                      Academica.
                     </p>
                   </div>
-                  <form class="row" id="formComprovante">
-                    <div class="mb-2">
-                      <label for="txtFormaPagamento">
-                        <i class="fa-solid fa-hand-holding-dollar"></i>
-                        Forma de Pagamento:
-                      </label>
-                      <select id="txtFormadePagamento" class="form-select" required name="FormadePagamento"
-                        aria-label="Selecione uma Forma de Pagamento">
-                        <option value="" selected>Selecione uma Opção</option>
-                        <option value="Mercadopago">Pagamento via Cartão de Crédito</option>
-                        <option value="Midinero">Pagamento via Mi dinero</option>
-                        <option value="Banco">Pagamento via Cartão de Crédito</option>
-                        <option value="Pix">Pagamento via Pix</option>
-                        <option value="Bicicletaria">Pagamento na Bicicleteria (Silva, Biciclo,
-                          Mafferbikes ou Italiano)</option>
-                      </select>
-                    </div>
-                    <div class="mb-2">
-                      <label for="txtComprovante">
-                        <i class="fa fa-receipt fa-fw" aria-hidden="true"></i>
-                        Envie o Comprovante:
-                      </label>
-                      <div id="comprovante">
-                        <input type="file" required accept="image/png,image/jpeg" id="txtComprovante"
-                          class="form-control">
-                      </div>
-                    </div>
-                    <div class="row p-2">
-                      <div class="form-group" id="envio">
-                        <button type="reset" class="btn btn-outline-warning">
-                          <i class="fa fa-eraser" aria-hidden="true"></i>
-                          Limpar</button>
-                      </div>
-                  </form>
                 </div>
-                <div class="text-center p-2" id="pagamento"></div>
-                <!-- ------------COMENTAR DAQUI -->
-
-                <!-- <div id="btnPagamentoBr" hidden class="text-center p-1">
-                  <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
-                    data-preference-id="379326377-e539835a-6b56-457c-9315-34769d218659" data-source="button">
-                    </script>
-                </div>
-                <div id="btnPagamentoUy" hidden class="text-center p-1">
-                  <script src="https://www.mercadopago.com.uy/integrations/v1/web-payment-checkout.js"
-                    data-preference-id="673979847-66c5c939-5ae9-415d-820c-984222c48a15" data-source="button">
-                    </script>
-                </div> -->
-                <!-- ------------COMENTAR ATÉ AQUI -->
               </div>
             </div>
           </div>
@@ -196,63 +157,6 @@
     <div class="col-lg-2 col-md-1 col-sm-0">
     </div>
     <!-- ---------- -->
-    <div class="modal fade" id="modalPix" data-backdrop="static" data-keyboard="false" tabindex="-1"
-      aria-labelledby="modalPix" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Pagamento com Pix</h5>
-            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button> -->
-          </div>
-          <div class="modal-body" id="modalBody1">
-            <img id="imgQrPix" src="assets/images/qrcode2.jpg" alt="QRcode" class="img-fluid">
-            <div class="input-group">
-              <input type="text" class="form-control" name="texto" id="codigoQR" readonly />
-              <button title="Copiar" id="copiarQR" type="button" class="btn btn-outline-success "><i class="fa fa-copy"
-                  aria-hidden="true"></i>
-              </button>
-            </div>
-            <div class="text-center">
-              Ou, Copie o código
-            </div>
-
-            <div class="text-center mt-3">
-              <p><b>Yellow Sports</b></p>
-              <span><b>Chave Pix</b></span>
-              <p><b>CNPJ: </b>47.789.360/0001-88</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- -------------------------- -->
-    <div class="modal fade" id="modalMidinero" data-backdrop="static" data-keyboard="false" tabindex="-1"
-      aria-labelledby="modalMidinero" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Pagamento com Mi dinero</h5>
-            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button> -->
-          </div>
-          <div class="modal-body text-center" id="modalBody">
-            <p>Pagamento Mi Dinero é via sistema agências RED PAGO Uruguai ou transferência bancária.</p>
-            <p>
-              Mi Dinero
-            </p>
-            <p>
-              Nome: Eduardo Padilla Severo Junior
-            </p>
-            <p>
-              Cédula: 1080427171
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
     <!-- ---------- -->
   </div>
   </div>

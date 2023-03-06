@@ -107,10 +107,10 @@ async function statusConfirmado() {
 function displayMsgComprovante() {
     Txt.desconto.innerHTML = `<b>${nomeLote}</b> (${dataLote}) ${precoLoteBr}`
 }
-async function disableMsgComprovante() {
-    document.querySelector("#txtMsgComprovante").style.display = "none";
-    Txt.comprovante.classList.add('disabled')
-}
+// async function disableMsgComprovante() {
+//     document.querySelector("#txtMsgComprovante").style.display = "none";
+//     Txt.comprovante.classList.add('disabled')
+// }
 async function statusEmAnalise() {
     ChangeColorStatusPayment('warning')
 }

@@ -42,3 +42,37 @@
   vertical-align: -0.125em;
   fill: currentColor;
 }
+.checkpoints {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkpoints label {
+  margin-right: 20px;
+  font-size: 18px;
+}
+
+.checkpoints input[type="checkbox"] {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  transition: all 0.3s ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.checkpoints input[type="checkbox"]:checked {
+  border-color: #2196f3;
+  background-color: #2196f3;
+}
+.cards-check {
+  align-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}

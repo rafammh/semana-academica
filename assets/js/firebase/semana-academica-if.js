@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, updateDoc, where } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
+import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, updateDoc, deleteDoc, where } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 import { deleteObject, getStorage, ref, uploadBytesResumable } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js";
 import { loginCad } from '../login/index.js';
 import { loading, Txt } from '../ui.js';
@@ -118,6 +118,15 @@ export function uploadImagem(file, imgRef, metadata, redirec) {
             }
         }
     );
+}
+export async function deleteInscrito(uid) {
+    // const docRef = doc(db, "semana-academica-if", uid);
+    // const docSnap = await getDoc(docRef);
+    await deleteDoc(doc(db, "semana-academica-if", uid)).then(() => {
+        console.log('Documento excluído com sucesso!');
+    }).catch((error) => {
+        console.error('Erro ao excluir o documento:', error);
+    });
 }
 export function uploadImagemCad(file, imgRef, metadata, doc, psw, pais) {
 

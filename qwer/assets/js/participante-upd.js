@@ -2,14 +2,15 @@ import { file, getImgRef, imgRef, metadata } from "../../../assets/js/cadastro/s
 import { deleteImage, updateCollection, uploadImagem } from "../../../assets/js/firebase/semana-academica-if.js";
 import { Checkbox, Form, loading, Txt } from "../../../assets/js/ui.js";
 import { img } from "./participante-get.js";
-export function updateParticipante() {
-    let doc = sessionStorage.getItem('documentoLogado').replace(/\"|\"|\-/g, '');
-    let pais = sessionStorage.getItem('paislogado').replace(/\"|\"|\-/g, '');
-    const ID = pais + doc;
+export function updateParticipante(id_user, nivel) {
+    const user = nivel == 'user'
+    const adm = nivel == 'adm'
     let subscription = {};
     getImgRef(Txt.fotoCard)
     let fotoCard = ''
+
     Form.update.addEventListener('submit', async (event) => {
+        debugger
         event.preventDefault();
         let campoSenha
         let resultSenha
@@ -21,14 +22,30 @@ export function updateParticipante() {
             if (imgRef != null) {
                 fotoCard = imgRef
             }
-            subscription = {
-                nome: Txt.nome.value,
-                fotoCard,
+            if (user) {
+
+                subscription = {
+                    nome: Txt.nome.value,
+                    fotoCard,
+                }
+            }
+            else if (adm) {
+
+                subscription = {
+                    nome: Txt.nome.value,
+                    fotoCard,
+                    pais: Txt.pais.value,
+                    cidade: Txt.cidade.value,
+                    documento: Txt.documento.value,
+                    dataNascimento: Txt.dataNascimento.value,
+                    categoria: Txt.categoria.value,
+                    whatsapp: Txt.whatsApp.value
+                }
             }
             if (campoSenha != null) subscription[campoSenha] = resultSenha
             let ref2 = `images/${img}`
             deleteImage(ref2)
-            updateCollection(ID, subscription)
+            updateCollection(id_user, subscription)
             // alert('Cadastro Atualizado com sucesso!')
             loading.hidden = false
             if (imgRef != null) {
@@ -44,8 +61,27 @@ export function updateParticipante() {
             subscription = {
                 nome: Txt.nome.value,
             }
+            if (user) {
+
+                subscription = {
+                    nome: Txt.nome.value,
+                }
+            }
+            else if (adm) {
+
+                subscription = {
+                    nome: Txt.nome.value,
+                    pais: Txt.pais.value,
+                    cidade: Txt.cidade.value,
+                    documento: Txt.documento.value,
+                    dataNascimento: Txt.dataNascimento.value,
+                    categoria: Txt.categoria.value,
+                    whatsapp: Txt.whatsApp.value
+                }
+            }
+
             if (campoSenha != null) subscription[campoSenha] = resultSenha
-            updateCollection(ID, subscription)
+            updateCollection(id_user, subscription)
             // alert('Cadastro Atualizado com sucesso!')
             loading.hidden = false
             setTimeout(function () {

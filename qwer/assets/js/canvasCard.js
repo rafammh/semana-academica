@@ -1,28 +1,43 @@
 import { canvas } from "../../../assets/js/ui.js";
 
-export function Canvas(cardSA) {
+export function Canvas(cardMTB) {
 
     let ctx = canvas.getContext("2d");
     var card = new Image();
-    card.src = cardSA.certificado;
+    card.src = cardMTB.fotoModalidade;
+    var fotoUser = new Image();
+    fotoUser.src = cardMTB.fotoParticipante;
+    var file = document.querySelector('#updImgUser');
 
+    fotoUser.crossOrigin = "Anonymous";
     canvas.width = 1000;
     canvas.height = 838;
+    file.addEventListener('change', function () {
+        var image = file.files[0];
+        var src = URL.createObjectURL(image);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        fotoUser.src = src;
+        card.src = cardMTB.fotoModalidade;
+        render()
+        // resizeImage(src, { width: 427 }).then(function (blob) {
+        //     document.querySelector("#resized").src = URL.createObjectURL(blob)
+        // })
+    });
     function estilizaCategoria() {
-        ctx.font = "bold 34px Comic Sans MS, cursive, sans - serif";
+        ctx.font = "bold 34px Anton, sans-serif";
         ctx.textAlign = "left";
-        ctx.fillStyle = cardSA.Categoria.corCategoria;
+        ctx.fillStyle = cardMTB.Categoria.corCategoria;
     }
     function estilizaNome() {
-        ctx.font = "bold 25px Comic Sans MS, cursive, sans-serif";
-        ctx.textAlign = "center";
-        ctx.fillStyle = "black";
+        ctx.font = "bold 25px Anton, sans-serif";
+        ctx.textAlign = "left";
+        ctx.fillStyle = "white";
     }
     function estilizaDados() {
         ctx.font = "14px Source Sans Pro, sans-serif";
         ctx.textTransform = "upercase";
-        ctx.textAlign = "centar";
-        ctx.fillStyle = "black";
+        ctx.textAlign = "left";
+        ctx.fillStyle = "white";
     }
     function setBg() {
 
@@ -38,13 +53,25 @@ export function Canvas(cardSA) {
         card.addEventListener('load', function () {
             // ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(card, 0, 0, canvas.width, canvas.height);
-
         })
     }
     function setText() {
-        ctx.globalCompositeOperation = "destination-over";
+        // ctx.globalCompositeOperation = "destination-over";
+        estilizaCategoria()
+        ctx.fillText(cardMTB.Categoria.nomeCategoria, cardMTB.Categoria.eixoX, cardMTB.Categoria.eixoY);
         estilizaNome()
-        ctx.fillText(cardSA.nomeParticipante, 500, 585);
+        ctx.fillText(cardMTB.nomeParticipante, 125, 140);
+        estilizaDados()
+        ctx.fillText(`${cardMTB.pais}`, 125, 200);
+        ctx.fillText(`${cardMTB.cidade}`, 125, 220);
+        ctx.fillText(`${cardMTB.equipe}`, 125, 240);
+        ctx.fillText(`${cardMTB.equipe2}`, 125, 260);
+
+    }
+    function setImageUser() {
+        fotoUser.addEventListener('load', function () {
+            render2(this)
+        });
     }
     function render2(img) {
         let h = img.height
@@ -101,7 +128,7 @@ export function Canvas(cardSA) {
         //     setText()
         // }
         setCardImage();
-        setText()
+        setImageUser();
     }
     render()
 }

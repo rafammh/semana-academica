@@ -67,39 +67,75 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Painel Administrativo</h1>
-                    <p class="mb-4">Realize a inscrição de uma pessoa na Semana Academica</p>
+                    <p class="mb-4">Atualize as informações do Usuario do Painel Administrativo</p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-success">Inscrever na Semana Academica </h6>
+                            <h6 class="m-0 font-weight-bold text-success">Atualizar Usuario</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <!-- Começa o Formulário -->
-                                <form id="formCadastro" class="needs-validation" method="post">
+                                <form id="formUpdate">
+
                                     <div class="mb-2 mt-3">
                                         <label for="txtPais" class="form-label">
                                             <i class=" fa fa-globe fa-fw" aria-hidden="true"></i>
                                             *País:</label>
-                                        <select id="txtPais" class="form-select" required name="pais"
+                                        <select id="txtPais" class="form-select" disabled readonly="" name="pais"
                                             aria-label="Selecione um País">
-                                            <option translate="no" value="" selected>Selecione um País</option>
-                                            <option translate="no" value="Brasil">Brasil</option>
-                                            <option translate="no" value="Uruguai">Uruguai</option>
-                                            <option translate="no" value="Argentina">Argentina</option>
+                                            <option value="" selected>Selecione um País</option>
+                                            <option value="Brasil">Brasil</option>
+                                            <option value="Uruguai">Uruguai</option>
+                                            <option value="Argentina">Argentina</option>
                                         </select>
                                     </div>
                                     <div class="mb-2">
-                                        <label for="txtNome" class="form-label">
-                                            <i class=" fa fa-user fa-fw" aria-hidden="true"></i>
-                                            *Nome Completo:</label>
-                                        <input type="text" id="txtNome" class="form-control" required name="nome"
-                                            placeholder="Digite seu Nome">
+                                        <label for="txtCidade" class="form-label">
+                                            <i class=" fa fa-city fa-fw" aria-hidden="true"></i>
+                                            *Cidade:</label>
+                                        <input type="text" id="txtCidade" class="form-control" name="cidade"
+                                            placeholder="Digite sua Cidade" required="" name="txtCidade">
+                                        <span class="error" aria-live="polite"></span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="txtDocumento" class="form-label">
+                                            <i class=" fa fa-id-card fa-fw" aria-hidden="true"></i>
+                                            *Documento de Identidade:</label>
+                                        <input type="text" class="form-control" required="" id="txtDocumento"
+                                            name="documento" pattern="[0-9]+$" placeholder="Digite seu Documento">
+                                        <span class="error" aria-live="polite"></span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="txtDataNascimento" class="form-label">
+                                            <i class=" fa fa-calendar-days fa-fw" aria-hidden="true"></i>
+                                            *Data de nascimento:</label>
+                                        <input type="date" id="txtDataNascimento" class="form-control"
+                                            name="dataNascimento" required="">
+                                        <span class="error" aria-live="polite"></span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="txtEmail" class="form-label">
+                                            <i class=" fa fa-at fa-fw" aria-hidden="true"></i>
+                                            *E-mail:</label>
+                                        <input type="email" id="txtEmail" class="form-control" required="" readonly=""
+                                            disabled="" name="email" placeholder="Digite seu E-mail"
+                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                        <span class="error" aria-live="polite"></span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="txtWhatsApp" class="form-label">
+                                            <i class=" fa fa-whatsapp fa-fw" aria-hidden="true"></i>
+                                            *WhatsApp:</label>
+                                        <input type="tel" id="txtWhatsApp" class="form-control" required="" readonly=""
+                                            disabled="" maxlength="15" name="txtWhatsApp" pattern="[0-9]+$"
+                                            placeholder="Digite seu WhatsApp" />
+                                        <span class="error" aria-live="polite"></span>
                                     </div>
                                     <div class="mb-2 mt-3">
                                         <label for="txtCategoria" class="form-label">
-                                            <i class="fa-solid fa-venus-double"></i>
+                                            <i class="fa-solid fa-venus-mars"></i>
                                             *Sexo:</label>
                                         <select id="txtCategoria" class="form-select" name="Categoria"
                                             aria-label="Selecione uma opção">
@@ -109,86 +145,49 @@
                                         </select>
                                     </div>
                                     <div class="mb-2">
-                                        <label for="txtDocumento" class="form-label">
-                                            <i class=" fa fa-id-card fa-fw" aria-hidden="true"></i>
-                                            *Documento de Identidade:</label>
-                                        <input type="text" class="form-control" required id="txtDocumento"
-                                            name="documento" minlength="7" pattern="[a-zA-Z0-9]+$"
-                                            placeholder="Digite seu Documento">
+                                        <label for="txtNome" class="form-label">
+                                            <i class=" fa fa-user fa-fw" aria-hidden="true"></i>
+                                            *Nome Completo:</label>
+                                        <input type="text" id="txtNome" class="form-control" required name="nome"
+                                            placeholder="Digite seu Nome">
+                                        <span class="error" aria-live="polite"></span>
                                     </div>
-                                    <div class="mb-2">
-                                        <label for="txtDataNascimento" class="form-label">
-                                            <i class=" fa fa-calendar-days fa-fw" aria-hidden="true"></i>
-                                            *Data de nascimento:</label>
-                                        <input type="date" id="txtDataNascimento" class="form-control"
-                                            name="dataNascimento" required>
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="txtEmail" class="form-label">
-                                            <i class=" fa fa-at fa-fw" aria-hidden="true"></i>
-                                            *E-mail:</label>
-                                        <input type="email" id="txtEmail" class="form-control" required name="email"
-                                            placeholder="Digite seu E-mail"
-                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="txtCidade" class="form-label">
-                                            <i class=" fa fa-city fa-fw" aria-hidden="true"></i>
-                                            *Cidade:</label>
-                                        <input type="text" id="txtCidade" class="form-control" name="cidade"
-                                            placeholder="Digite sua Cidade" name="txtCidade" required="">
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="txtWhatsApp" class="form-label">
-                                            <i class=" fa fa-whatsapp fa-fw" aria-hidden="true"></i>
 
-                                            *WhatsApp:</label>
-                                        <div class="input-group">
-                                            <select required="required" id="dddWhatsApp" class="input-group-text"
-                                                aria-label="Selecione seu DDI">
-                                                <option translate="no" value="">DDI</option>
-                                                <option translate="no" value="+55">BR +55</option>
-                                                <option translate="no" value="+598">UY +598</option>
-                                                <option translate="no" value="+54">AR +54</option>
-                                            </select>
-                                            <input type="tel" id="txtWhatsApp" class="form-control" required="required"
-                                                maxlength="13" name="txtWhatsApp" pattern="[0-9/ /]+$"
-                                                placeholder="Digite Seu WhatsApp" />
-                                        </div>
-                                    </div>
-                                    <div class="mb-2">
-                                        <label for="txtFotoCard">
-                                            <i class="fa fa-picture-o fa-fw" aria-hidden="true"></i>
-                                            Foto para o Card (Opcional):
+
+
+                                    <div class="mb-2 text-center">
+                                        <label>
+                                            <input type="checkbox" id="checkboxSenha" name="meucheckbox"> Deseja
+                                            atualizar a Senha?
+                                            <p class="text-muted">
+                                                Desmarque esta opção caso não queira alterar a Senha.
+                                            </p>
                                         </label>
-                                        <p>(Anexo de sua foto favorita para receber seu card promocional do Experience
-                                            2022)</p>
-                                        <div class="input-group mb-3">
-                                            <input type="file" accept="image/png,image/jpeg" id="txtFotoCard"
-                                                class="form-control" name="txtFotoCard">
-                                        </div>
+                                    </div>
+                                    <div class="mb-2" id="Senha" hidden>
                                         <div class="mb-2">
                                             <label for="txtSenha" class="form-label">
                                                 <i class="fa fa-shield" aria-hidden="true"></i>
                                                 *Senha:</label>
                                             <input type="password" id="txtSenha" class="form-control" name="Senha"
-                                                placeholder="Digite uma Senha" minlength="6" required="">
+                                                placeholder="Digite uma Senha">
+                                            <span class="error" aria-live="polite"></span>
                                         </div>
                                         <div class="mb-2 position-relative">
                                             <label for=" confirm_password" class="form-label">
                                                 <i class="fa fa-check-double" aria-hidden="true"></i>
                                                 *Confirme a Senha:</label>
                                             <input class="form-control" type="password" placeholder="Confirme Senha"
-                                                id="txtConfirmaSenha" minlength="6" required="">
+                                                id="txtConfirmaSenha" minlength="6">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <button type="submit" id="btnCadastrar" class="btn btn-success float-end">
-                                            <i class="fa fa-check" aria-hidden="true"></i>
-                                            Inscrever</button>
-                                        <button type="reset" class="btn btn-warning float-end">
-                                            <i class="fa fa-eraser" aria-hidden="true"></i>
-                                            Limpar</button>
+                                    <label>
+                                        Os campos com * são obrigatórios
+                                    </label>
+                                    <div class="form-group text-center">
+                                        <button type="submit" id="btnAtualizar" class="btn btn-info">
+                                            <i class="fa fa-edit" aria-hidden="true"></i>
+                                            Atualizar</button>
                                     </div>
                                 </form>
                             </div>
@@ -248,7 +247,7 @@
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <script type="module" src="assets/cadastrar.js"></script>
+    <script type="module" src="assets/atualizar_inscrito.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>

@@ -33,8 +33,15 @@ else {
     setTimeout(function () {
         loading.hidden = true
     }, 2000);
-    getParticipante()
-    updateParticipante()
+    let documento = JSON.parse(sessionStorage.getItem('documentoLogado'))
+    let pais2 = JSON.parse(sessionStorage.getItem('paislogado'))
+    getParticipante(documento, pais2)
+    let doc = sessionStorage.getItem('documentoLogado').replace(/\"|\"|\-/g, '');
+    let pais = sessionStorage.getItem('paislogado').replace(/\"|\"|\-/g, '');
+
+    const id = pais + doc;
+    const nivel = 'adm'
+    updateParticipante(id, nivel)
 }
 
 

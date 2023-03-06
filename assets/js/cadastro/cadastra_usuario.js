@@ -1,11 +1,13 @@
-import { getSemanaAcademicaIfdocsID, subscribeToSemanaAcademicaIf, uploadImagem, uploadImagemCad } from "../firebase/semana-academica-if.js";
-import { loginCad } from "../login/index.js";
+import { getUsuariosdocsID, subscribeToUsuarios } from "../firebase/usuarios.js";
 import { addDaysToDate, Checkbox, dataAtualFormatada, Form, formatDate, loading, Txt } from '../ui.js';
 import { bloqueioCadastro, validatePassword } from "../validaForm.js";
-import { file, getImgRef, imgRef, metadata } from "./storage/getImg.js";
 // import { file, getimg, metadata, newName, storageRef } from "./storage/index.js";
-
-let fotoCard = ''
+// copía o index e troca os semanaacademicaif por usuarios. e deixa só os campos que tu quiser
+// te liga nos MAIUSCULOS, só a primeira letra que vai mudar, se começa com S Usuarios, se for s usuarios
+// não esquece de mudar tmb no from " "
+// acho que com isso ja vai funcionar, mas tu vai ter que criar as páginas pra cadastrar e atualizar o usuarios tmb.
+// amanha a gente ve o card. ou se tu quiser, da uma olhada, vendo o que foi apagado, pq esse é o erro que ta dando
+// ta chamando coisa que a gente apagou. se tirar todas chamadas que n existem ele volta, to indo dormir, flw
 let tmpDate = new Date()
 let hoje = formatDate(tmpDate, 'dd/mm/aaaa')
 let dia10 = addDaysToDate(tmpDate, 10)
@@ -44,7 +46,6 @@ export async function Cadastrar(nivel) {
             bloqueioCadastro()
         })
     }
-    getImgRef(Txt.fotoCard)
 
     Form.cadastro.addEventListener('submit', async (event) => {
         debugger
@@ -56,7 +57,7 @@ export async function Cadastrar(nivel) {
             }
 
             const ID = Txt.pais.value + Txt.documento.value
-            const docsID = await getSemanaAcademicaIfdocsID()
+            const docsID = await getUsuariosdocsID()
 
             // Verifica se o documento já foi cadastrado
             if (docsID.includes(ID)) {
@@ -66,16 +67,13 @@ export async function Cadastrar(nivel) {
             else {
                 const ID = Txt.pais.value + Txt.documento.value
                 // Previne a submissão do formulário:
-                const docsID = await getSemanaAcademicaIfdocsID()
+                const docsID = await getUsuariosdocsID()
                 if (docsID.includes(ID) === true) {
                     alert("Esse Documento já existe")
                     Txt.documento.focus();
                 }
                 else {
 
-                    if (imgRef != null) {
-                        fotoCard = imgRef
-                    }
                     const subscription = {
                         pais: Txt.pais.value,
                         nome: Txt.nome.value,
@@ -86,41 +84,16 @@ export async function Cadastrar(nivel) {
                         cidade: Txt.cidade.value,
                         whatsapp: Txt.dddWhatsApp.value + Txt.whatsApp.value,
                         senha: Txt.senha.value,
-                        fotoCard: fotoCard,
-                        comprovantePagamento: '',
-                        status: 'Pendente',
                         dataInscricao: hoje,
                         dataFimEdit: dataFim,
                         momentoInscricao: datainsc,
+                        checkpoint: 0,
                     }
-                    subscribeToSemanaAcademicaIf(subscription, ID);
+                    subscribeToUsuarios(subscription, ID);
                     if (loading) {
                         loading.hidden = false;
                     }
-                    if (imgRef != null) {
-                        let ref = `images/${imgRef}`
-                        let pais = Txt.pais.value
-                        let doc = Txt.documento.value
-                        let psw = Txt.senha.value
-                        const uploadFunctions = {
-                            user: () => uploadImagemCad(file, ref, metadata, doc, psw, pais),
-                            adm: () => uploadImagem(file, ref, metadata, 'redirect'),
-                        }
-                        uploadFunctions[nivel]();
-                        // limparDados()
-                    } else {
-                        let pais = Txt.pais.value
-                        let doc = Txt.documento.value
-                        let psw = Txt.senha.value
-                        function redirect() { window.location.href = "index.html" }
-                        const uploadFunctions = {
-                            user: () => loginCad(doc, psw, pais),
-                            adm: () => redirect(),
-                        }
 
-                        uploadFunctions[nivel]();
-                        // limparDados()
-                    }
                 }
 
             }

@@ -1,18 +1,15 @@
 import { getStorage } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js";
 import { getUrlImage } from "../../../assets/js/cadastro/storage/urlImg.js";
 import app from "../../../assets/js/firebase/app.js";
-import { getCollection } from '../../../assets/js/firebase/semana-academica-if.js';
-import { BtnComIcone, Button, Cards, cutName, Div, download, fechaModal, Form, formatDate, loading, Txt } from '../../../assets/js/ui.js';
-import { formaDePagamentoPais } from "../../../assets/js/validaForm.js";
+import { getCollection, updateCollection } from '../../../assets/js/firebase/semana-academica-if.js';
+import { Button, Cards, cutName, Div, download, fechaModal, formatDate, loading, Txt } from '../../../assets/js/ui.js';
 import { Canvas } from "./canvas.js";
-import { createComprovante, updateComprovante } from "./participante-upd.js";
 
 // Check if the user is logged in
 if (!sessionStorage.getItem('token')) {
-    alert('You need to be logged in to access this page');
+    alert('Você precisa estar logado para acessar esta página');
     window.location.href = '../index.html';
 }
-
 // Show loading
 loading.hidden = false;
 
@@ -33,14 +30,64 @@ setTimeout(() => {
 }, 2000);
 
 // Get user data
-let documento = JSON.parse(sessionStorage.getItem('documentoLogado'));
-let pais = JSON.parse(sessionStorage.getItem('paislogado'));
+const documento = JSON.parse(sessionStorage.getItem('documentoLogado'));
+const pais = JSON.parse(sessionStorage.getItem('paislogado'));
+const id = pais + documento
 let dataFimEditar = sessionStorage.getItem('dataFimEdit').replace(/"/g, " ");
 const storage = getStorage(app);
 
 // Get the data from Firebase
 let docs = await getCollection(documento, pais);
 let doc, itemPais, img;
+
+function exibirCheckbox(id_inscrito, itemCheckpoint) {
+    // Verifica se a semana atual é a desejada (de 27 de fevereiro a 3 de março)
+    const dataAtual = new Date();
+    const semanaDesejadaInicio = new Date(2023, 1, 27); // 27 de fevereiro de 2023
+    const semanaDesejadaFim = new Date(2023, 2, 3); // 3 de março de 2023
+
+    if (dataAtual < semanaDesejadaInicio || dataAtual > semanaDesejadaFim) {
+        return; // Sai da função se não estiver na semana desejada
+    }
+
+    // Adiciona o texto do dia atual no label
+    const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+    const diaAtual = diasSemana[dataAtual.getDay()];
+    Txt.diaCheckpoint.innerText = diaAtual;
+
+    // Verifica se o checkbox já foi clicado hoje
+    const diaAtualStr = dataAtual.toDateString();
+    const checkboxDia = document.getElementById("diaCheckbox");
+    const chaveLocalStorage = "checkboxDia_" + diaAtualStr + id_inscrito;
+    const valorLocalStorage = localStorage.getItem(chaveLocalStorage);
+
+    if (valorLocalStorage === "true") {
+        checkboxDia.checked = true;
+        checkboxDia.disabled = true; // Desabilita o checkbox se já foi clicado hoje
+    } else {
+        checkboxDia.addEventListener("click", function () {
+            let subscription = {}
+            localStorage.setItem(chaveLocalStorage, true);
+            let numChecks = itemCheckpoint + 1
+            if (numChecks <= 3) {
+                subscription = {
+                    checkpoint: numChecks,
+                }
+            }
+            else {
+                subscription = {
+                    checkpoint: numChecks,
+                    status: 'Confirmado'
+                }
+
+            }
+            updateCollection(id_inscrito, subscription)
+            checkboxDia.checked = true;
+            checkboxDia.disabled = true;
+        });
+    }
+}
+
 docs.forEach(item => {
     doc = item.documento;
     itemPais = item.pais;
@@ -56,24 +103,15 @@ docs.forEach(item => {
 
     // Confirmed status
     if (item.status === 'Confirmado') {
-        Cards.status.classList.add('text-success');
-        Cards.status.innerHTML = item.status;
-        Form.comprovante.style.display = "none";
-        document.querySelector("#txtMsgComprovante").style.display = "none";
-        Txt.comprovante.classList.add('disabled')
         if (item.fotoCard != null) {
             Cards.foto.addEventListener('load', () => {
-
                 let nome = item.nome.toUpperCase()
                 if (nome.length > 20) nome = cutName(nome)
-                let pais = item.pais.toUpperCase()
-                let cidade = item.cidade.toUpperCase()
                 let foto = Cards.foto.getAttribute("src")
+                let fotoCertificad0 = 'assets/images/certificado-if.png'
                 let cardSA = {
-                    fotoParticipante: foto,
                     nomeParticipante: nome,
-                    pais: pais,
-                    cidade: cidade,
+                    certificado: fotoCertificad0,
                 }
                 Div.downloadCard.hidden = false
                 Canvas(cardSA)
@@ -83,29 +121,33 @@ docs.forEach(item => {
                 Button.dowloadUpd.addEventListener('click', () => {
                     download(linkDownloadUpd)
                 })
+
+                // -----------------------
+                let cardMTB = {
+                    fotoParticipante: foto,
+                    fotoModalidade: fotoModalidade,
+                    Categoria: {
+                        nomeCategoria: nomeCategoria,
+                        corCategoria: corCategoria,
+                        eixoX: x,
+                        eixoY: y,
+                    },
+                    nomeParticipante: nome,
+                    pais: pais,
+                    cidade: cidade,
+                    equipe: equipe,
+                    equipe2: equipe2,
+                }
+                divDownloadCard.hidden = false
+                CanvasCard(cardMTB)
+                // -----------------------
             })
         }
     }
-    // ---------------------EM ANALISE ----------------------------------
-    else if (item.status == 'Em Analise') {
-        Cards.status.classList.add('text-warning');
-        Cards.status.innerHTML = item.status
-        BtnComIcone("submit", 'btn-outline-secondary', "btnCadastrar", 'fa', 'fa-check', "Enviar", '#envio')
-        formaDePagamentoPais(itemPais)
-        let ID = itemPais + doc
-        let img2 = item.comprovantePagamento;
-        updateComprovante(ID, img2)
-    }
-    else {
-        Cards.status.classList.add('text-danger');
-        Cards.status.innerHTML = item.status;
-        BtnComIcone("submit", 'btn-outline-secondary', "btnCadastrar", 'fa', 'fa-check', "Enviar", '#envio')
-        formaDePagamentoPais(itemPais)
-        let ID = itemPais + doc
-        createComprovante(ID)
-    }
+    exibirCheckbox(id, item.checkpoint)
 
 })
+
 var partesData = dataFimEditar.split("/");
 var data = new Date(partesData[2], partesData[1] - 1, partesData[0]);
 var dataLimite = new Date(("2023, 11, 15"));
@@ -122,7 +164,7 @@ if (new Date() > dataMaior) {
     Button.editar.classList.add('disabled')
 }
 if (img != "") {
-    console.log('first')
+    console.log(img)
     getUrlImage(storage, img, Cards.foto)
 } else {
     Cards.foto.src = './assets/images/fotocard.png'

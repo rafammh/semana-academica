@@ -1,6 +1,7 @@
 import { getDownloadURL, ref } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-storage.js";
 export function getUrlImage(storage, img, fotoCard) {
     let starsRef = ref(storage, `images/${img}`);
+    console.log(starsRef);
     // Get the download URL
     getDownloadURL(starsRef).then((url) => {
         // Insert url into an <img> tag to "download"

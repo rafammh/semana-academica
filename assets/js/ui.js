@@ -27,7 +27,7 @@ const txts = {
     fotoCard: document.querySelector('#txtFotoCard'),
     refFotoCard: document.querySelector('#txtRefFotoCard'),
     confirmaSenha: document.querySelector('#txtConfirmaSenha'),
-    desconto: document.querySelector("#txtDesconto")
+    diaCheckpoint: document.querySelector('#txtDiaCheckpoint')
 };
 export { txts as Txt };
 // Login
@@ -68,6 +68,7 @@ const button = {
     copiar: document.querySelector('#copiarQR'),
     codigoQR: document.querySelector('#codigoQR'),
     cadastro: document.querySelector('#btnCadastrar'),
+    atualizar: document.querySelector('#btnAtualizar'),
     login: document.querySelector('#btnLogin'),
     logout: document.querySelector('#btnLogout'),
     fechaModal: document.querySelector('#fecharModal')
@@ -87,19 +88,12 @@ const div = {
     comprovante: document.querySelector('#comprovante'),
     foto: document.querySelector('#divFoto'),
     senha: document.querySelector('#Senha'),
-    authState: document.querySelector('#divAuthState'),
-    pagamento: document.querySelector('#pagamento'),
     loginError: document.querySelector('#divLoginError'),
     lote: document.querySelector('#lote')
 };
 export { div as Div }
 // Lote
 export const dataHoje = new Date();
-export const dataLimiteLote = new Date(("2023, 10, 21"));
-export const nomeLote = 'Lote Finish'
-export const dataLote = 'de 22.10 à 22.11'
-export const precoLoteBr = 'R$140,00'
-export const precoLoteUy = "$1400,00"
 export const qrPix = '00020101021126670014br.gov.bcb.pix0114477893600001880227Lote Sprint Experience 20225204000053039865406135.005802BR5913YELLOW SPORTS6008BRASILIA621405102loteExp226304CAEE'
 export const qrPix2 = '00020101021126720014br.gov.bcb.pix0114477893600001880232Lote Finish Experience incrições5204000053039865406140.005802BR5913YELLOW SPORTS6008BRASILIA622005163loteFinishExp226304D6F4'
 export let BtnComIcone = (tipo, classeBtn, idBtn, faIcon, classeIcon, txtBtn, idDiv) => {
@@ -219,8 +213,42 @@ export function lineBroken(text) {
     }
     return { text };
 }
+function exibirCheckbox(id_inscrito, itemCheckpoint) {
+    // Verifica se a semana atual é a desejada (de 27 de fevereiro a 3 de março)
+    const dataAtual = new Date();
+    const semanaDesejadaInicio = new Date(2023, 1, 27); // 27 de fevereiro de 2023
+    const semanaDesejadaFim = new Date(2023, 2, 3); // 3 de março de 2023
 
+    if (dataAtual < semanaDesejadaInicio || dataAtual > semanaDesejadaFim) {
+        return; // Sai da função se não estiver na semana desejada
+    }
 
+    // Adiciona o texto do dia atual no label
+    const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+    const diaAtual = diasSemana[dataAtual.getDay()];
+    txts.diaCheckpoint.innerText = diaAtual;
+
+    // Verifica se o checkbox já foi clicado hoje
+    const diaAtualStr = dataAtual.toDateString();
+    const checkboxDia = document.getElementById("diaCheckbox");
+    const chaveLocalStorage = "checkboxDia_" + diaAtualStr + id_inscrito;
+    const valorLocalStorage = localStorage.getItem(chaveLocalStorage);
+
+    if (valorLocalStorage === "true") {
+        checkboxDia.checked = true;
+        checkboxDia.disabled = true; // Desabilita o checkbox se já foi clicado hoje
+    } else {
+        checkboxDia.addEventListener("click", function () {
+            localStorage.setItem(chaveLocalStorage, true);
+            subscription = {
+                checkpoint: itemCheckpoint + 1,
+            }
+            updateCollection(id_inscrito, subscription)
+            checkboxDia.checked = true;
+            checkboxDia.disabled = true;
+        });
+    }
+}
 
 // export async function resizeImage(src, options) {
 
