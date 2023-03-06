@@ -11,6 +11,6 @@ console.log(doc);
 console.log(pais);
 console.log(id);
 const nivel = 'adm'
-debugger
+
 getParticipante(doc, pais)
 updateParticipante(id, nivel)
