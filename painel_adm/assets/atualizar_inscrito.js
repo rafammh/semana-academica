@@ -1,5 +1,5 @@
-import { getUsuario } from "./usuario-get.js";
-import { updateUsuario } from "./usuario-upd.js";
+import { getParticipante } from "../../qwer/assets/js/participante-get.js";
+import { updateParticipante } from "../../qwer/assets/js/participante-upd.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
@@ -10,5 +10,7 @@ const doc = sessionStorage.getItem('documentoLogado').replace(/"/g, "")
 console.log(doc);
 console.log(pais);
 console.log(id);
-getUsuario(id)
-updateUsuario(id)
+const nivel = 'adm'
+
+getParticipante(doc, pais)
+updateParticipante(id, nivel)

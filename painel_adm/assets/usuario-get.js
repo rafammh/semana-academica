@@ -1,5 +1,5 @@
-import { Checkbox, Div, Form, Txt } from '../../../assets/js/ui.js';
-import { bloqueioChecbox, validatePassword } from "../../../assets/js/validaForm.js";
+import { Checkbox, Div, Form, Txt } from '../../assets/js/ui.js';
+import { bloqueioChecbox, validatePassword } from "../../assets/js/validaForm.js";
 import { getGptUsuariosdocsID } from "../../assets/js/firebase/usuarios.js";
 export async function getUsuario(id) {
     Checkbox.senha.addEventListener('click', () => {
