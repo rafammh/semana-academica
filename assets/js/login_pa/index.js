@@ -3,7 +3,6 @@ import { Login } from "../ui.js";
 
 
 async function logar(documento, senha, pais) {
-    debugger
     let id = pais + documento;
     let docs = await getUsuariosdocsID();
     if (!docs.includes(id)) {
@@ -31,12 +30,12 @@ async function logar(documento, senha, pais) {
     return true;
 }
 
-export function login(loginDocumento, loginPassword, loginPais) {
+export async function login(loginDocumento, loginPassword, loginPais) {
     let documentoValue = loginDocumento.value;
     let senhaValue = loginPassword.value;
     let pais = loginPais.value;
 
-    if (!logar(documentoValue, senhaValue, pais)) {
+    if (!await logar(documentoValue, senhaValue, pais)) {
         Login.documento.setAttribute('style', 'border-color: red');
         Login.password.setAttribute('style', 'border-color: red');
         Login.status.innerHTML = 'Documento ou Senha Inválido(a)';

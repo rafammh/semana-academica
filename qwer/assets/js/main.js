@@ -41,13 +41,17 @@ let docs = await getCollection(documento, pais);
 let doc, itemPais, img;
 
 function exibirCheckbox(id_inscrito, itemCheckpoint) {
-    // Verifica se a semana atual é a desejada (de 27 de fevereiro a 3 de março)
+    // Verifica se a semana atual é a desejada (de 23 de abril a 29 de abril)
     const dataAtual = new Date();
-    const semanaDesejadaInicio = new Date(2023, 1, 27); // 27 de fevereiro de 2023
-    const semanaDesejadaFim = new Date(2023, 2, 3); // 3 de março de 2023
+    const semanaDesejadaInicio = new Date(2023, 1, 23); // 23 de abril de 2023
+    const semanaDesejadaFim = new Date(2023, 1, 29); // 29 de abril de 2023
 
     if (dataAtual < semanaDesejadaInicio || dataAtual > semanaDesejadaFim) {
-        return; // Sai da função se não estiver na semana desejada
+        const checkboxDia1 = document.getElementById("diaCheckbox");
+        checkboxDia1.classList.add('invisible');
+        Txt.diaCheckpoint.innerText = 'Semana acadêmica acabou.';
+        // document.body.appendChild(mensagem);
+        return;
     }
 
     // Adiciona o texto do dia atual no label
@@ -69,7 +73,8 @@ function exibirCheckbox(id_inscrito, itemCheckpoint) {
             let subscription = {}
             localStorage.setItem(chaveLocalStorage, true);
             let numChecks = itemCheckpoint + 1
-            if (numChecks <= 3) {
+
+            if (numChecks <= 1) {
                 subscription = {
                     checkpoint: numChecks,
                 }
@@ -87,6 +92,7 @@ function exibirCheckbox(id_inscrito, itemCheckpoint) {
         });
     }
 }
+
 
 docs.forEach(item => {
     doc = item.documento;
@@ -157,7 +163,7 @@ if (data > dataLimite) {
 } else {
     dataMaior = formatDate(dataLimite, 'dd/mm/aaaa')
 }
-document.querySelector("#txtDataLimite").innerHTML = `Você tem até ${dataMaior} <br/> para editar as informações`
+// document.querySelector("#txtDataLimite").innerHTML = `Você tem até ${dataMaior} <br/> para editar as informações`
 if (new Date() > dataMaior) {
     console.log(partesData)
     Div.editarInsc.style = 'display:none !important'

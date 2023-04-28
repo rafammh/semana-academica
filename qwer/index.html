@@ -79,7 +79,8 @@
                         </div>
                       </div>
                       <div class="d-flex">
-                        <p class="card-text"><span class="h6">Status do Pagamento:</span> <span id="cardStatus"></span>
+                        <p class="card-text"><span class="h6">Número de Checkpoints:</span>
+                          <span id="cardStatus"></span>
                         </p>
 
                       </div>
@@ -124,10 +125,10 @@
                         </div>
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item">
-                            <input type="checkbox" id="diaCheckbox" name="diaCheckbox" value="+1">
-                            <label id="txtDiaCheckpoint" for="txtDiaCheckpoint"></label>
+                            <input type="checkbox" id="diaCheckbox" title="checkbox" name="diaCheckbox" value="+1">
+                            <label for="diaCheckbox" id="txtDiaCheckpoint"></label>
                           </li>
-
+                        </ul>
                       </div>
                     </div>
                     <div id="editarInsc" class="d-flex justify-content-center">
@@ -135,7 +136,6 @@
                         <a id="btnEditInsc" href="cadastro-upd.html" class="btn btn-outline-primary"><i
                             class="fa fa-edit" aria-hidden="true"></i>
                           Editar Dados</a>
-                        <p class="text-muted text-center" id="txtDataLimite"></p>
                       </div>
                     </div>
                   </div>
@@ -143,8 +143,7 @@
                 <div class="row">
                   <div id="txtMsgComprovante">
                     <p id="txtDesconto" class="text-bg-warning text-center"></p>
-                    <p class="text-bg-danger text-center">O seu certificado será gerado após a conclusão da Semana
-                      Academica.
+                    <p class="text-bg-danger text-center">O seu certificado será gerado após atingir 2 Checkpoints
                     </p>
                   </div>
                 </div>
@@ -167,15 +166,17 @@
         <a href="index.html" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
           <img src="../assets/images/logo_escuro.png" title="Logo" class="bi" height="24">
         </a>
-        <span class="mb-3 mb-md-0 text-muted">© 2022. Todos os direitos reservados.</span>
+        <span class="mb-3 mb-md-0 text-muted">© 2023. Todos os direitos reservados.</span>
       </div>
 
       <ul class="nav col-md-6 justify-content-end list-unstyled d-flex">
-        <li class="ms-3"><a class="text-muted" title="Instagram" href="https://www.instagram.com/semana-academica-if/"
-            target="_blank"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+        <li class="ms-3"><a rel="noopener" class="text-muted" title="Instagram"
+            href="https://www.instagram.com/semana-academica-if/" target="_blank"><i class="fa fa-instagram fa-2x"
+              aria-hidden="true"></i></a>
         </li>
-        <li class="ms-3"><a class="text-muted" title="Facebook" href="https://www.facebook.com/semanaAcademicaIf"
-            target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
+        <li class="ms-3"><a rel="noopener" class="text-muted" title="Facebook"
+            href="https://www.facebook.com/semanaAcademicaIf" target="_blank"><i class="fa fa-facebook-square fa-2x"
+              aria-hidden="true"></i></a>
         </li>
       </ul>
     </footer>
