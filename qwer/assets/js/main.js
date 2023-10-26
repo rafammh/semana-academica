@@ -44,7 +44,7 @@ function exibirCheckbox(id_inscrito, itemCheckpoint) {
     // Verifica se a semana atual é a desejada (de 23 de abril a 29 de abril)
     const dataAtual = new Date();
     const semanaDesejadaInicio = new Date(2023, 10, 25); // 23 de abril de 2023
-    const semanaDesejadaFim = new Date(2023, 11, 2); // 29 de abril de 2023
+    const semanaDesejadaFim = new Date(2023, 11, 02); // 29 de abril de 2023
 
     if (dataAtual < semanaDesejadaInicio || dataAtual > semanaDesejadaFim) {
         const checkboxDia1 = document.getElementById("diaCheckbox");
