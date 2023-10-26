@@ -48,7 +48,7 @@ export async function Cadastrar(nivel) {
     }
 
     Form.cadastro.addEventListener('submit', async (event) => {
-        debugger
+
         event.preventDefault();
         try {
             // Verifica a validação do formulário

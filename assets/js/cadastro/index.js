@@ -47,7 +47,7 @@ export async function Cadastrar(nivel) {
     getImgRef(Txt.fotoCard)
 
     Form.cadastro.addEventListener('submit', async (event) => {
-        debugger
+
         event.preventDefault();
         try {
             // Verifica a validação do formulário
